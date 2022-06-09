@@ -29,10 +29,10 @@ router.post("/addUsuario", async (req, res) => {
   }
 });
 
-router.get("/getAdministrador", async (req, res) => {
+router.get("/checkAdministrador", async (req, res) => {
   try {
     const response = await db.query(
-      "select exists (select 1 from usuarios where email like $1 and contrasena like $2)",
+      "select exists (select 1 from guardias where email like $1 and contrasena like $2)",
       [req.query.email, req.query.contrasena]
     );
     res.json({
