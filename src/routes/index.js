@@ -2,6 +2,13 @@ const Router = require("express-promise-router");
 const router = new Router();
 const db = require("../database/index");
 
+router.get("/user", async (req, res) => {
+  const response = await db.query("select * from usuarios");
+  res.json({
+    data: response.rows[0],
+  })
+})
+
 router.get("/checkUsuarios", async (req, res) => {
   const response = await db.query(
     "select exists (select 1 from usuarios where email like $1 and contrasena like $2)",
