@@ -55,6 +55,7 @@ router.get("/checkAdministrador", async (req, res) => {
 router.post("/addIncidencia", async (req, res) => {
   try {
     const response = await db.query("");
+    console.log(req);
   } catch (error) {
     console.log(error);
   }
