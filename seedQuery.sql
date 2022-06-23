@@ -57,3 +57,8 @@ ADD CONSTRAINT id_guardia_fk FOREIGN KEY (id_guardia) REFERENCES guardias(id_gua
 
 ALTER TABLE guardias
 ADD CONSTRAINT id_estadio_fk FOREIGN KEY (id_estadio) REFERENCES estadios(id_estadio);
+
+
+
+SELECT * from incidencias;
+INSERT INTO incidencias(tipo,descripcion,realizado,ubicacion,id_usuario) VALUES('A','A',DATE(),"a",1)
