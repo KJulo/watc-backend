@@ -63,7 +63,7 @@ router.post("/addIncidencia", async (req, res) => {
 
 router.get("/getIncidencias", async (req, res) => {
   try {
-    const response = await db.query("SELECT distinct i.ubicacion, count(DISTINCT i.ubicacion) FROM incidencias i INNER JOIN estadios e ON e.id_estadio = i.id_estadio INNER JOIN ubicacion u ON u.id_estadio = i.id_estadio group by i.ubicacion");
+    const response = await db.query("SELECT i.ubicacion, count (i.ubicacion) FROM incidencias i where i.ubicacion in (select nombre from ubicacion) GROUP BY i.ubicacion");
     res.json(response.rows)
   } catch (error) {
     console.log(error);
