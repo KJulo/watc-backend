@@ -56,15 +56,15 @@ router.post("/addIncidencia", async (req, res) => {
   try {
     const response = await db.query("INSERT INTO incidencias(tipo,descripcion,fechaEmitida,isResuelta,ubicacion,id_usuario,id_estadio) VALUES($1,$2,NOW(),false,$3,$4,$5)", [req.body.incidencia.tipo, req.body.incidencia.descripcion, req.body.incidencia.ubicacion, req.body.user.ido, req.body.incidencia.idEstadio]);
     console.log(response);
-    
   } catch (error) {
     console.log(error);
   }
 });
 
-router.get("/getIncidencia", async (req, res) => {
+router.get("/getIncidencias", async (req, res) => {
   try {
-    const response = await db.query();
+    const response = await db.query("SELECT distinct i.ubicacion, count(DISTINCT i.ubicacion) FROM incidencias i INNER JOIN estadios e ON e.id_estadio = i.id_estadio INNER JOIN ubicacion u ON u.id_estadio = i.id_estadio group by i.ubicacion");
+    res.json(response.rows)
   } catch (error) {
     console.log(error);
   }
