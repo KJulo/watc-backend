@@ -78,7 +78,9 @@ router.post("/addIncidencia", async (req, res) => {
         req.body.incidencia.idEstadio,
       ]
     );
-    console.log(response);
+    res.json({
+      response: true,
+    });
   } catch (error) {
     console.log(error);
   }
