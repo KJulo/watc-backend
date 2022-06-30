@@ -21,14 +21,7 @@ router.get("/checkUsuarios", async (req, res) => {
 
 router.get("/getIncidenciasList", async (req, res) => {
   const response = await db.query(
-    "select tipo,descripcion,fechaemitida,ubicacion,isresuelta from incidencias"
-  );
-  res.json(response.rows);
-});
-
-router.get("/getIncidenciasListHours", async (req, res) => {
-  const response = await db.query(
-    "select tipo,descripcion,fechaemitida,ubicacion,isresuelta from incidencias where fechaemitida >= (now() - INTERVAL '2 hours')"
+    "select tipo,descripcion,fechaemitida,ubicacion,isresuelta from incidencias order by fechaemitida desc"
   );
   res.json(response.rows);
 });
